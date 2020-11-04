@@ -1,0 +1,19 @@
+﻿<Window x:Class="WPF_UIASetRelatedProperties.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_UIASetRelatedProperties"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <local:MyVeryOwnControl x:Name="MyControlOne" 
+                AutomationProperties.Name="Towhee" Width="200" Height="100" />
+            <local:MyVeryOwnControl x:Name="MyControlTwo"
+                AutomationProperties.Name="Hummingbird" Width="200" Height="100" />
+            <local:MyVeryOwnControl x:Name="MyControlThree"
+                AutomationProperties.Name="Steller's Jay" Width="200" Height="100" />
+        </StackPanel>
+    </Grid>
+</Window>
