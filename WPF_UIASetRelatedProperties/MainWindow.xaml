@@ -6,14 +6,19 @@
         xmlns:local="clr-namespace:WPF_UIASetRelatedProperties"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <StackPanel>
+    <Grid Margin="20">
+        <local:MyTablikeStackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <local:MyTabitemlikeRadioButton Content="Wallace" Width="100" />
+            <local:MyTabitemlikeRadioButton Content="Gromit" Width="100" />
+        </local:MyTablikeStackPanel>
+        
+        <!--<StackPanel>
             <local:MyVeryOwnControl x:Name="MyControlOne" 
-                AutomationProperties.Name="Towhee" Width="200" Height="100" />
+                AutomationProperties.Name="Towhee" Width="200" Height="50" />
             <local:MyVeryOwnControl x:Name="MyControlTwo"
-                AutomationProperties.Name="Hummingbird" Width="200" Height="100" />
+                AutomationProperties.Name="Hummingbird" Width="200" Height="50" />
             <local:MyVeryOwnControl x:Name="MyControlThree"
-                AutomationProperties.Name="Steller's Jay" Width="200" Height="100" />
-        </StackPanel>
+                AutomationProperties.Name="Steller's Jay" Width="200" Height="50" />
+        </StackPanel>-->
     </Grid>
 </Window>

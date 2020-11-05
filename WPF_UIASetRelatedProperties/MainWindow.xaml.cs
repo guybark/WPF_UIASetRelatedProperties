@@ -22,50 +22,97 @@ namespace WPF_UIASetRelatedProperties
         {
             InitializeComponent();
 
-            this.MyControlOne.PositionInSet = 1;
-            this.MyControlOne.SizeOfSet = 3;
-            this.MyControlTwo.PositionInSet = 2;
-            this.MyControlTwo.SizeOfSet = 3;
-            this.MyControlThree.PositionInSet = 3;
-            this.MyControlThree.SizeOfSet = 3;
+            // The "MyVeryOwnControl" stuff won't work with pre-4.8 .NET Frameworks.
+
+            //this.MyControlOne.PositionInSet = 1;
+            //this.MyControlOne.SizeOfSet = 3;
+            //this.MyControlTwo.PositionInSet = 2;
+            //this.MyControlTwo.SizeOfSet = 3;
+            //this.MyControlThree.PositionInSet = 3;
+            //this.MyControlThree.SizeOfSet = 3;
         }
     }
 
-    public class MyVeryOwnControl : UserControl
-    {
-        public int PositionInSet { get; set; }
-        public int SizeOfSet { get; set; }
+    //public class MyVeryOwnControl : UserControl
+    //{
+    //    public int PositionInSet { get; set; }
+    //    public int SizeOfSet { get; set; }
 
+    //    protected override AutomationPeer OnCreateAutomationPeer()
+    //    {
+    //        return new MyVeryOwnControlAutomationPeer(this);
+    //    }
+    //}
+
+    //public class MyVeryOwnControlAutomationPeer : UserControlAutomationPeer
+    //{
+    //    private MyVeryOwnControl owner;
+
+    //    public MyVeryOwnControlAutomationPeer(MyVeryOwnControl owner) :
+    //        base(owner)
+    //    {
+    //        this.owner = owner;
+    //    }
+
+    //    protected override int GetPositionInSetCore()
+    //    {
+    //        return this.owner.PositionInSet;
+    //    }
+
+    //    protected override int GetSizeOfSetCore()
+    //    {
+    //        return this.owner.SizeOfSet;
+    //    }
+
+    //    // Other stuff...
+    //    protected override string GetLocalizedControlTypeCore()
+    //    {
+    //        return "Bird"; // Localize this!
+    //    }
+    //}
+
+
+    // The MyTablikeStackPanel is a StackPanel that claims to be a Tab.
+    public class MyTablikeStackPanel : StackPanel
+    {
         protected override AutomationPeer OnCreateAutomationPeer()
         {
-            return new MyVeryOwnControlAutomationPeer(this);
+            return new MyTablikeStackPanelAutomationPeer(this);
         }
     }
 
-    public class MyVeryOwnControlAutomationPeer : UserControlAutomationPeer
+    public class MyTablikeStackPanelAutomationPeer : FrameworkElementAutomationPeer
     {
-        private MyVeryOwnControl owner;
-
-        public MyVeryOwnControlAutomationPeer(MyVeryOwnControl owner) :
+        public MyTablikeStackPanelAutomationPeer(MyTablikeStackPanel owner) :
             base(owner)
         {
-            this.owner = owner;
         }
 
-        protected override int GetPositionInSetCore()
+        protected override AutomationControlType GetAutomationControlTypeCore()
         {
-            return this.owner.PositionInSet;
+            return AutomationControlType.Tab;
+        }
+    }
+
+    // The MyTabitemlikeRadioButton is a RadioButton that claims to be a TabItem.
+    public class MyTabitemlikeRadioButton : RadioButton
+    {
+        protected override AutomationPeer OnCreateAutomationPeer()
+        {
+            return new MyTabitemlikeRadioButtonAutomationPeer(this);
+        }
+    }
+
+    public class MyTabitemlikeRadioButtonAutomationPeer : RadioButtonAutomationPeer
+    {
+        public MyTabitemlikeRadioButtonAutomationPeer(MyTabitemlikeRadioButton owner) :
+            base(owner)
+        {
         }
 
-        protected override int GetSizeOfSetCore()
+        protected override AutomationControlType GetAutomationControlTypeCore()
         {
-            return this.owner.SizeOfSet;
-        }
-
-        // Other stuff...
-        protected override string GetLocalizedControlTypeCore()
-        {
-            return "Bird"; // Localize this!
+            return AutomationControlType.TabItem;
         }
     }
 }
